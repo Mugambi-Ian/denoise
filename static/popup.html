@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Denoiser</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    body { width: 280px; padding: 16px; }
+    .used { font-size: 28px; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .bar { height: 6px; border-radius: 3px; background: var(--line); margin: 8px 0 12px; overflow: hidden; }
+    .bar > div { height: 100%; background: var(--accent); width: 0; }
+    .state { font-weight: 600; }
+    footer { margin-top: 14px; }
+  </style>
+</head>
+<body>
+  <h1>Today</h1>
+  <div><span class="used" id="used">–</span> <span class="muted" id="budget"></span></div>
+  <div class="bar"><div id="fill"></div></div>
+  <p>State: <span class="state" id="state">–</span></p>
+  <p class="muted" id="pending" hidden>Settings changes are queued for tomorrow.</p>
+  <div class="warn" id="incognito" hidden>
+    Incognito windows aren't covered yet, so this site list can be browsed there freely.
+    <ol>
+      <li>Open <b>chrome://extensions</b>.</li>
+      <li>Click <b>Details</b> on Social Media Denoiser.</li>
+      <li>Turn on <b>Allow in Incognito</b>.</li>
+    </ol>
+  </div>
+  <footer><button class="link" id="settings">Settings</button></footer>
+  <script src="popup.js"></script>
+</body>
+</html>

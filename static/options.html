@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Denoiser Settings</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    main { max-width: 640px; margin: 0 auto; padding: 24px 16px 48px; }
+    .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 6px 0; }
+    .row label { min-width: 150px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--line); font-weight: normal; }
+    th { color: var(--muted); font-size: 12.5px; }
+    .note { font-size: 13px; }
+    #errors { color: #b3261e; }
+    @media (prefers-color-scheme: dark) { #errors { color: #f2b8b5; } }
+    #saved { color: var(--ok); }
+    .actions { margin-top: 20px; display: flex; gap: 12px; align-items: center; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Social Media Denoiser settings</h1>
+  <p class="muted note">Changes that make limits stricter apply right away. Changes that loosen them wait until tomorrow.</p>
+
+  <div class="warn" id="pendingBox" hidden><b>Queued for tomorrow:</b><ul id="pendingList"></ul></div>
+
+  <div class="grid">
+    <section>
+      <h2>Sites</h2>
+      <p class="muted note">One domain per line. Subdomains are included.</p>
+      <textarea id="sites" spellcheck="false"></textarea>
+    </section>
+    <section>
+      <h2>Exempt paths</h2>
+      <p class="muted note">Media isn't degraded here (e.g. DMs), but the time still counts.</p>
+      <textarea id="exempt" spellcheck="false"></textarea>
+    </section>
+  </div>
+
+  <h2>Time</h2>
+  <div class="row"><label for="budget">Daily budget</label><input type="number" id="budget" min="1" step="1"> min</div>
+  <div class="row"><label>Session length</label><input type="number" id="sessLo" min="0.5" max="5" step="0.5"> to <input type="number" id="sessHi" min="0.5" max="5" step="0.5"> min</div>
+  <div class="row"><label>Cooldown</label><input type="number" id="coolLo" min="1" step="1"> to <input type="number" id="coolHi" min="1" step="1"> min</div>
+  <div class="row"><label for="idle">Idle after</label><input type="number" id="idle" min="15" step="5"> s without input</div>
+
+  <h2>Degradation curve</h2>
+  <p class="muted note">Each row is where a band ends. Values rise linearly from the previous row.</p>
+  <table>
+    <thead><tr><th>Band ends at (% of budget)</th><th>Media failure (%)</th><th>Typical delay (s)</th></tr></thead>
+    <tbody id="curve"></tbody>
+  </table>
+  <div class="row"><label for="pastCap">Failure past budget</label><input type="number" id="pastCap" min="0" max="100" step="1"> %</div>
+  <div class="row"><label for="autoplay">Autoplay off from</label><input type="number" id="autoplay" min="0" max="100" step="1"> % failure</div>
+
+  <div class="actions"><button id="save">Save</button><span id="saved"></span></div>
+  <div id="errors"></div>
+</main>
+<script src="options.js"></script>
+</body>
+</html>

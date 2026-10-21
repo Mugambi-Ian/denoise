@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Social Media Denoiser",
+  "short_name": "Denoiser",
+  "version": "0.1.0",
+  "description": "Caps social media at a daily budget by making it progressively less rewarding, never by blocking it.",
+  "minimum_chrome_version": "120",
+  "background": { "service_worker": "background.js" },
+  "action": { "default_popup": "popup.html", "default_icon": { "16": "icons/16.png", "32": "icons/32.png", "48": "icons/48.png" } },
+  "options_page": "options.html",
+  "icons": { "16": "icons/16.png", "32": "icons/32.png", "48": "icons/48.png", "128": "icons/128.png" },
+  "incognito": "spanning",
+  "permissions": ["storage", "alarms", "tabs", "idle", "scripting", "declarativeNetRequest"],
+  "host_permissions": [
+    "*://x.com/*", "*://*.x.com/*",
+    "*://twitter.com/*", "*://*.twitter.com/*",
+    "*://instagram.com/*", "*://*.instagram.com/*",
+    "*://facebook.com/*", "*://*.facebook.com/*",
+    "*://tiktok.com/*", "*://*.tiktok.com/*",
+    "*://reddit.com/*", "*://*.reddit.com/*",
+    "*://linkedin.com/*", "*://*.linkedin.com/*",
+    "*://threads.net/*", "*://*.threads.net/*",
+    "*://threads.com/*", "*://*.threads.com/*",
+    "*://bsky.app/*", "*://*.bsky.app/*"
+  ],
+  "optional_host_permissions": ["*://*/*"]
+}

@@ -1,0 +1,6 @@
+{
+  "ExtensionInstallForcelist": ["EXTENSION_ID;https://clients2.google.com/service/update2/crx"],
+  "IncognitoModeAvailability": 1,
+  "BrowserGuestModeEnabled": false,
+  "BrowserAddPersonEnabled": false
+}

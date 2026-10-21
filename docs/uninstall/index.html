@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Denoiser Removed</title>
+  <style>
+    :root { color-scheme: light dark; --bg: #ffffff; --fg: #1d2530; --muted: #5f6b7a; --line: #dde2e8; --accent: #26405a; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --bg: #161b22; --fg: #e6ebf1; --muted: #9aa6b4; --line: #2c3540; --accent: #8fb3d9; }
+    }
+    :root[data-theme="dark"] { --bg: #161b22; --fg: #e6ebf1; --muted: #9aa6b4; --line: #2c3540; --accent: #8fb3d9; }
+    body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+    main { max-width: 480px; margin: 0 auto; padding: 64px 16px; }
+    h1 { font-size: 22px; margin: 0 0 16px; }
+    .used { font-size: 40px; font-weight: 600; font-variant-numeric: tabular-nums; margin: 8px 0 4px; }
+    .bar { height: 8px; border-radius: 4px; background: var(--line); overflow: hidden; margin: 12px 0 24px; }
+    .bar div { height: 100%; background: var(--accent); }
+    .muted { color: var(--muted); }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Social Media Denoiser has been removed</h1>
+  <div id="usage" hidden>
+    <p class="muted" id="when">Today</p>
+    <div class="used"><span id="used"></span> <span class="muted" style="font-size:18px">of <span id="budget"></span> min</span></div>
+    <div class="bar"><div id="fill"></div></div>
+  </div>
+  <p>Your limits and usage history were stored only in this browser and have been deleted with the extension.</p>
+  <p class="muted">You can reinstall it at any time from the Chrome Web Store.</p>
+</main>
+<script>
+  const q = new URLSearchParams(location.search);
+  const used = Number(q.get('used'));
+  const budget = Number(q.get('budget'));
+  if (Number.isFinite(used) && budget > 0) {
+    document.getElementById('usage').hidden = false;
+    document.getElementById('used').textContent = used + ' min';
+    document.getElementById('budget').textContent = budget;
+    document.getElementById('fill').style.width = Math.min(100, (used / budget) * 100) + '%';
+    const date = q.get('date');
+    if (date) document.getElementById('when').textContent = 'Social media time on ' + date;
+  }
+</script>
+</body>
+</html>

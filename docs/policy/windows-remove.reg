@@ -1,0 +1,11 @@
+Windows Registry Editor Version 5.00
+
+; Removes the Social Media Denoiser lock. Other Chrome policies on this machine are left alone.
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist]
+"1"=-
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Chrome]
+"IncognitoModeAvailability"=-
+"BrowserGuestModeEnabled"=-
+"BrowserAddPersonEnabled"=-

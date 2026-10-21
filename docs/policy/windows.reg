@@ -1,0 +1,11 @@
+Windows Registry Editor Version 5.00
+
+; Social Media Denoiser lock. Replace EXTENSION_ID with the Chrome Web Store ID before importing.
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist]
+"1"="EXTENSION_ID;https://clients2.google.com/service/update2/crx"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Chrome]
+"IncognitoModeAvailability"=dword:00000001
+"BrowserGuestModeEnabled"=dword:00000000
+"BrowserAddPersonEnabled"=dword:00000000

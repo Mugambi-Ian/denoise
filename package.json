@@ -1,0 +1,21 @@
+{
+  "name": "denoise",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Social Media Denoiser: caps social media at a daily budget by degrading it, never blocking it.",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:fast": "DENOISE_FAST=1 node build.mjs",
+    "watch": "node build.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "release": "DENOISE_UNINSTALL_URL=https://mugambi-ian.github.io/denoise/uninstall/ node build.mjs && rm -f denoise.zip && cd dist && zip -qr ../denoise.zip ."
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.3.5",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  }
+}
